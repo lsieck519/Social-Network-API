@@ -25,7 +25,7 @@ const thoughtController = {
     Thought.create(req.body)
       .then((thought) => {
         return User.findOneAndUpdate(
-          { _id: req.body.userId },
+          { username: req.body.username },
           { $push: { thoughts: thought._id } },
           { new: true }
         );
@@ -35,7 +35,7 @@ const thoughtController = {
           ? res.status(404).json({
               message: "Thought created, but found no user with that ID",
             })
-          : res.json("Created the thought")
+          : res.json({ message: "Created the thought" } )
       )
       .catch((err) => {
         console.log(err);
@@ -113,7 +113,7 @@ const thoughtController = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: "Unable to delete reaction!" })
-          : res.json(thought)
+          : res.json({ message: "Reaction successfully deleted!" })
       )
       .catch((err) => res.status(500).json(err));
   },
