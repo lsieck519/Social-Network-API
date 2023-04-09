@@ -3,10 +3,6 @@ const moment = require('moment')
 
 const reactionSchema = new Schema(
   {
-    reactionID: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
-  },
     reactionBody: {
       type: String,
       required: true,
@@ -19,7 +15,6 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      // To-do: dateFormat
       get: (createdAtVal) =>
         moment(createdAtVal).format("MMMM Do YYYY"),
     },
@@ -42,7 +37,6 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      // To-do: dateFormat
       get: (createdAtVal) =>
         moment(createdAtVal).format("MMMM Do YYYY"),
     }, 

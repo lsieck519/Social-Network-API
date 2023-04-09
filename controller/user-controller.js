@@ -10,17 +10,6 @@ const userController = {
   },
 
 
-  // getUserbyId(req, res) {
-  //   User.findOne({ _id: req.params.userId })
-  //     .select("-__v") // do i need this?
-  //     .then((user) =>
-  //       !user
-  //         ? res.status(404).json({ message: "No user with that ID" })
-  //         : res.json(user)
-  //     )
-  //     .catch((err) => res.status(500).json(err));
-  // },
-
   getUserbyId(req, res) {
     User.findOne({ _id: req.params.id })
       .select("-__v")
@@ -105,7 +94,7 @@ const userController = {
           ? res.status(404).json({
               message: "Unable to remove friend",
             })
-          : res.json(user)
+          : res.json({ message: "Successfully unfriended!" })
       )
       .catch((err) => {
         console.log(err);
